@@ -38,9 +38,9 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<!-- Google Font -->
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Google Font -->
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -51,7 +51,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>SIMA</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>APP</b>SIMA</span>
+          <span class="logo-lg"><b>APP-</b>SIMA</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -135,11 +135,11 @@
             </li>
           <!--   <li><a href="<?= base_url('app/caleg') ?>"><i class="fa fa-book"></i> <span>Celeg</span></a></li>
             <li><a href="<?= base_url('app/usercaleg') ?>"><i class="fa fa-book"></i> <span>Usercaleg</span></a></li> -->
-            <li><a href="<?= base_url('app/relawan') ?>"><i class="fa fa-user"></i> <span>Data Relawan / Tim Sukses</span></a></li>
-            <li><a href="<?= base_url('app/wilayah') ?>"><i class="fa fa-map"></i> <span>Data Wilayah Suara</span></a></li>
-            <li><a href="<?= base_url('app/pos') ?>"><i class="fa fa-home"></i> <span>Data Post</span></a></li>
-            <li><a href="<?= base_url('app/pemilih') ?>"><i class="fa fa-users"></i> <span>Data Pemilih</span></a></li>
-            <li><a href="<?= base_url('app/grafig_pemilih') ?>"><i class="fa fa-chart-simple"></i> <span>Grafig Pemilih</span></a></li>
+            <li><a href="<?= base_url('app/data_aset') ?>"><i class="fa fa-user"></i> <span>Data Aset</span></a></li>
+            <li><a href="<?= base_url('app/data_kategori') ?>"><i class="fa fa-map"></i> <span>Data Kategori</span></a></li>
+            <li><a href="<?= base_url('app/data_kualitas') ?>"><i class="fa fa-home"></i> <span>Data Kualiatas</span></a></li>
+            <li><a href="<?= base_url('app/data_lokasi') ?>"><i class="fa fa-users"></i> <span>Data Lokasi Aset</span></a></li>
+            <li><a href="<?= base_url('app/data_admin') ?>"><i class="fa fa-chart-simple"></i> <span>Data Admin</span></a></li>
 
           </ul>
         </section>

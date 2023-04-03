@@ -19,7 +19,7 @@
           <hr>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Tambah Data Lokasi Aset
+            Tambah Data Aset
           </button>
 
           <!-- Modal -->
@@ -33,7 +33,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form method="post" action="<?= base_url('app/act_addlokasi') ?>">
+                  <form method="post" enctype="multipart/form-data" action="<?= base_url('app/act_addAset') ?>">
 
                    <div class="form-group">
                     <label for="exampleInputEmail1">Kode Aset</label>
@@ -48,10 +48,10 @@
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Kategori</label>
-                    <select class="form-control" name="Kategori">
+                    <select class="form-control" name="kategori">
                       <option>-- Pilih Kategori --</option>
                       <?php 
-                      foreach ($Kategori as $kate) {
+                      foreach ($kategori as $kate) {
                         ?>
                         <option><?= $kate['nama_kategori'] ?></option>
 
@@ -61,7 +61,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Kualitas</label>
-                    <select class="form-control" name="Kategori">
+                    <select class="form-control" name="kualitas">
                       <option>-- Pilih Kualitas --</option>
                       <?php 
                       foreach ($kualitas as $kt) {
@@ -74,7 +74,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Lokasi Aset</label>
-                    <select class="form-control" name="Kategori">
+                    <select class="form-control" name="lokasi_aset">
                       <option>-- Pilih Lokasi Aset --</option>
                       <?php 
                       foreach ($lokasi as $lk) {
@@ -136,6 +136,7 @@
                   <th>Harga Pembelian</th>
                   <th>Toko Pembelian</th>
                   <th>Foto</th>
+                  <th>QR</th>
                   <th>Opsi</th>
                 </tr>
               </thead>
@@ -154,7 +155,13 @@
                     <td><?= $data['no_faktur_pembelian'] ?></td>
                     <td><?= $data['harga_pembelian'] ?></td>
                     <td><?= $data['toko_pembelian'] ?></td>
-                    <td><?= $data['foto'] ?></td>
+
+                    <td>
+                      <a href="<?= base_url('assets/berkas/') ?><?= $data['foto'] ?>" target="_blank"><img src="<?= base_url('assets/berkas/') ?><?= $data['foto'] ?>" style="height: 100px;"></a>
+                    </td>
+                    <td>
+                      <img src="<?= base_url('assets/qr/') ?><?= $data['qr'] ?>.png" style="height: 100px;">
+                    </td>
                     <td>
                       <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModaledit<?= $data['id'] ?>"><i class="fa fa-pen"></i> Edit</button>
 
@@ -173,92 +180,154 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">
-                         <form method="post" action="<?= base_url('app/act_editlokasi') ?>">
+                        <div class="modal-body">0
 
-                          <input type="hidden" name="id" value="<?= $data['id']  ?>">
+                          <form method="post" enctype="multipart/form-data" action="<?= base_url('app/act_editaset') ?>">
 
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Kode</label>
-                            <input type="text" name="nama" readonly="" class="form-control" value="<?= $data['kode'] ?>" required>
+                            <input type="hidden" name="id" value="<?= $data['id']  ?>">
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Kode Aset</label>
+                              <input type="text" name="kode" class="form-control" readonly required value="<?= $data['kode'] ?>">
+                            </div>
+
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Nama Aset</label>
+                              <input type="text" name="nama_aset" class="form-control" value="<?= $data['nama_aset'] ?>" required="">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Kategori</label>
+                              <select class="form-control" name="kategori">
+                                <option><?= $data['kategori'] ?></option>
+                                <option>-- Pilih Kategori --</option>
+                                <?php 
+
+                                foreach ($kategori as $kate) {
+                                  ?>
+                                  <option><?= $kate['nama_kategori'] ?></option>
+
+                                <?php } ?>
+                              </select>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Kualitas</label>
+                              <select class="form-control" name="kualitas">
+                               <option><?= $data['kualitas'] ?></option>
+                               <option>-- Pilih Kualitas --</option>
+                               <?php 
+                               foreach ($kualitas as $kt) {
+                                ?>
+                                <option><?= $kt['kualitas'] ?></option>
+
+                              <?php } ?>
+                            </select>
                           </div>
 
-
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Lokasi</label>
-                            <input type="text" name="nama_lokasi" class="form-control" value="<?= $data['nama_lokasi'] ?>">
-                          </div>
+                            <label for="exampleInputEmail1">Lokasi Aset</label>
+                            <select class="form-control" name="lokasi_aset">
+                             <option><?= $data['lokasi_aset'] ?></option>
+                             <option>-- Pilih Lokasi Aset --</option>
+                             <?php 
+                             foreach ($lokasi as $lk) {
+                              ?>
+                              <option><?= $lk['nama_lokasi'] ?></option>
 
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Ruangan</label>
-                            <input type="text" name="ruangan" value="<?= $data['ruangan'] ?>" class="form-control" required>
-                          </div>
-
-
+                            <?php } ?>
+                          </select>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+
+
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">No Faktur Pembelian</label>
+                          <input type="text" name="no_faktur_pembelian" class="form-control" required="" value="<?= $data['no_faktur_pembelian'] ?>">
                         </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
 
-                <!-- End Modal Edit -->
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Harga Pembelian</label>
+                          <input type="number" name="harga_pembelian" class="form-control" required="" value="<?= $data['harga_pembelian'] ?>">
+                        </div>
 
-                <!-- Modal Hapus -->
-                <div class="modal fade" id="exampleModalhapus<?= $data['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Lokasi Aset</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Toko Pembelian</label>
+                          <input type="text" name="toko_pembelian" class="form-control" required="" value="<?= $data['toko_pembelian'] ?>">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Foto Barang</label>
+                          <input type="file" name="foto" class="form-control">
+                        </div>
+
+
+
                       </div>
-                      <div class="modal-body">
-
-                        <h4>Apakah anda ingin menghapus data ini ? </h4>
-                        <form method="post" action="<?= base_url('app/act_hapuslokasi') ?>">
-                          <input type="hidden" name="id" value="<?= $data['id'] ?>">
-
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Delete</button>
-                        </div>
-                      </form>
-                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
+              </div>
 
-                <!-- End Modal Edit -->
-              <?php } ?>
+              <!-- End Modal Edit -->
 
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>No</th>
-                <th>Kode</th>
-                <th>Nama Aset</th>
-                <th>Kategori</th>
-                <th>Kualitas</th>
-                <th>Lokasi Aset</th>
-                <th>Faktur Pembelian</th>
-                <th>Harga Pembelian</th>
-                <th>Toko Pembelian</th>
-                <th>Foto</th>
-                <th>Opsi</th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+              <!-- Modal Hapus -->
+              <div class="modal fade" id="exampleModalhapus<?= $data['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Hapus Data Aset</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <h4>Apakah anda ingin menghapus data ini ? </h4>
+                      <form method="post" action="<?= base_url('app/act_hapusaset') ?>">
+                        <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- End Modal Edit -->
+            <?php } ?>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>No</th>
+              <th>Kode</th>
+              <th>Nama Aset</th>
+              <th>Kategori</th>
+              <th>Kualitas</th>
+              <th>Lokasi Aset</th>
+              <th>Faktur Pembelian</th>
+              <th>Harga Pembelian</th>
+              <th>Toko Pembelian</th>
+              <th>Foto</th>
+              <th>QR</th>
+              <th>Opsi</th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
-    </tbody>
+    </div>
+  </tbody>
 
-  </div>
-  <!-- /.box-body -->
+</div>
+<!-- /.box-body -->
 </div>
 <!-- /.box -->
 
