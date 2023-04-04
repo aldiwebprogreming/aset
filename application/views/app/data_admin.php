@@ -4,6 +4,7 @@
   }
 </style>
 <!-- Main content -->
+</
 <section class="content">
 
 
@@ -204,6 +205,9 @@
      </div>
    </tbody>
 
+
+   
+
  </div>
  <!-- /.box-body -->
 </div>
@@ -212,9 +216,7 @@
 
 
 </div>
-</div>
 
 
 </section>
 <!-- /.content -->
-</div>

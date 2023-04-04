@@ -9,6 +9,7 @@
 		function __construct()
 		{
 			parent::__construct();
+			
 			// if ($this->session->username == null) {
 			// 	redirect('login/');
 			// }
@@ -392,7 +393,98 @@
 
 		}
 
-		
+
+		function cetakqr(){
+
+			$data['kode'] = $this->input->post('kodeqr');
+			$this->load->view('app/cetak_qr', $data);
+
+		}
+
+
+		// function cetak(){
+		// 	$this->load->library('Dompdf_gen');
+
+		// 	$this->load->view('app/cetak');
+
+		// 	$paper_size = "A4";
+		// 	$orientatation = "Portrait";
+		// 	$html = $this->output->get_output();
+
+		// 	$this->dompdf->set_paper($paper_size, $orientatation);
+		// 	$this->dompdf->load_html($html);
+		// 	$this->dompdf->render();
+		// 	$this->dompdf->stream("qrcodeaset.pdf", array('Attachment' => 0));
+
+		// }
+
+		function data_peminjaman(){
+			$data['pinjam'] = $this->db->get('tbl_peminjaman')->result_array();
+			$this->load->view('template/header');
+			$this->load->view('app/data_peminjaman2', $data);
+			$this->load->view('template/footer');
+		}
+
+		function act_addpinjam(){
+
+			$data = [
+				'kode' => 'PJM-'.rand(0, 10000),
+				'kode_aset' => $this->input->post('kode_aset'),
+				'nama_peminjam' => $this->input->post('nama_peminjam'),
+				'alamat_peminjam' => $this->input->post('alamat_peminjam'),
+				'nohp_peminjam' => $this->input->post('nohp_peminjam'),
+				'jml_barang' => $this->input->post('jml_barang'),
+				'tgl_peminjaman' => $this->input->post('tgl_peminjaman'),
+				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
+				'keterangan' => $this->input->post('keterangan'),
+			];
+
+			$this->db->insert('tbl_peminjaman', $data);
+			$this->session->set_flashdata('message', 'swal("Yess", "Data berhasil ditambah", "success");');
+			redirect('app/data_peminjaman');
+		}
+
+		function act_editpinjam(){
+			$id = $this->input->post('id');
+			$data = [
+				'nama_peminjam' => $this->input->post('nama_peminjam'),
+				'alamat_peminjam' => $this->input->post('alamat_peminjam'),
+				'nohp_peminjam' => $this->input->post('nohp_peminjam'),
+				'jml_barang' => $this->input->post('jml_barang'),
+				'tgl_peminjaman' => $this->input->post('tgl_peminjaman'),
+				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
+				'keterangan' => $this->input->post('keterangan'),
+			];
+
+			$this->db->where('id', $id);
+			$this->db->update('tbl_peminjaman', $data);
+			$this->session->set_flashdata('message', 'swal("Yess", "Data berhasil diubah", "success");');
+			redirect('app/data_peminjaman');
+
+		}
+
+		function act_status(){
+
+			$id = $this->input->post('id');
+			$status = $this->input->post('status');
+
+			if ($status == 0) {
+				$data = [
+					'status' => 1
+				];
+			}else{
+				$data = [
+					'status' => 0
+				];
+
+			}
+
+			$this->db->where('id', $id);
+			$this->db->update('tbl_peminjaman', $data);
+			$this->session->set_flashdata('message', 'swal("Yess", "Status berhasil diubah", "success");');
+			redirect('app/data_peminjaman');
+
+		}
 
 	}
 
