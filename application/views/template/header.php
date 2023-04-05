@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>APP</title>
+  <title>APP-SIMDA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -49,9 +49,9 @@
       <!-- Logo -->
       <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>SIMA</span>
+        <span class="logo-mini"><b>SIMDA</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>APP-</b>SIMA</span>
+          <span class="logo-lg"><b>APP - </b>SIMDA</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -72,20 +72,26 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?= base_url('assets/') ?>dist/img/caleg.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><!--  <?=  ucfirst($this->session->username) ?> --></span>
+                  <span class="hidden-xs"><?=  ucfirst($this->session->username) ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="<?= base_url('assets/') ?>dist/img/caleg.png" class="img-circle" alt="User Image">
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
 
-                    
+                      <div class="pull-right">
 
-                  </div>
+                        <a href="<?= base_url('login/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+
+
+
+                      </div>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-            <!-- Control Sidebar Toggle Button -->
+                <!-- Control Sidebar Toggle Button -->
               <!-- <li>
                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
               </li> -->

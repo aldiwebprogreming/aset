@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>APP Caleg</title>
+	<title>LOGIN | APP-SIMDA</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->	
@@ -30,10 +30,11 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('<?= base_url('assets/login/') ?>images/lk.jpeg');">
+		<div class="container-login100" style="background-image: url('<?= base_url('assets/login/') ?>images/komputer.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					APP CALEGKU
+					APP SIMDA<br>
+					<p style="color: white;">( Sistem Informasi Manejemen Data Aset )</p>
 				</span>
 				<form method="post" action="<?= base_url('login/act_login') ?>" class="login100-form validate-form p-b-33 p-t-5">
 
@@ -47,9 +48,9 @@
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
-					<div class="alert alert-primary" role="alert">
+				<!-- 	<div class="alert alert-primary" role="alert">
 						<a href="<?= base_url('login/home') ?>">Login sebagai relawan ? </a>
-					</div>
+					</div> -->
 
 
 					<div class="container-login100-form-btn m-t-32">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2023 at 11:27 AM
+-- Generation Time: Apr 05, 2023 at 10:26 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -41,7 +41,7 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`id`, `kode`, `jabatan`, `username`, `pass`, `date`) VALUES
-(2, 'AD-762', 'Administrasi', 'aldi', '$2y$10$UISL3KKXXfvMRfX4phtWAe0Vb5Y/i/90XIhEsjz5GHloErs9LRT3G', '2023-04-04 02:15:38');
+(3, 'AD-547', 'Administrasi', 'admin', '$2y$10$gZKjAvQEw60pcd6ksaQoYO4szR1iCOzGHNCU1vFf3JDpWmQzyjElq', '2023-04-05 07:21:20');
 
 -- --------------------------------------------------------
 
@@ -70,8 +70,30 @@ CREATE TABLE `tbl_aset` (
 --
 
 INSERT INTO `tbl_aset` (`id`, `kode`, `nama_aset`, `kategori`, `kualitas`, `lokasi_aset`, `no_faktur_pembelian`, `harga_pembelian`, `toko_pembelian`, `foto`, `qr`, `user`, `date`) VALUES
-(6, 'KA-885', 'Komputer', 'Elektronik', 'Baru', 'Lantai 1', '08345235214-343', '8000000', 'Shopee', 'a4b153b75e5aac42c94900455d06670d.png', '4b412d383835', '', '2023-04-04 02:19:32'),
-(9, 'KA-928', 'Meja Kantor', 'Material', 'Baru', 'Lantai 1', '434343034393', '500000', 'Material Subur', 'ef7f4775233379bcb94e14e4474da030.PNG', '4b412d393238', '', '2023-04-04 09:23:15');
+(11, 'KA-357', 'Komputer', 'Elektronik', 'Bekas', 'Lantai 1', '3434343434333', '2000000', 'Amanahkom', '1adb2144b8f0889e1482988434c66bd3.PNG', '687474703a2f2f6c6f63616c686f73742f617365742f617365742f696e6465782f4b412d333537', '', '2023-04-05 07:58:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_denda`
+--
+
+CREATE TABLE `tbl_denda` (
+  `id` int(11) NOT NULL,
+  `kode_peminjam` varchar(15) NOT NULL,
+  `kode_aset` varchar(15) NOT NULL,
+  `tgl_pengembalian` varchar(15) NOT NULL,
+  `denda` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_denda`
+--
+
+INSERT INTO `tbl_denda` (`id`, `kode_peminjam`, `kode_aset`, `tgl_pengembalian`, `denda`, `date`) VALUES
+(2, '3434', 'KA-885', '2023-04-05', '0', '2023-04-05 04:31:06'),
+(3, 'PJM-1986', 'KA-357', '2023-04-05', '20000', '2023-04-05 08:08:04');
 
 -- --------------------------------------------------------
 
@@ -111,8 +133,8 @@ CREATE TABLE `tbl_kualitas` (
 --
 
 INSERT INTO `tbl_kualitas` (`id`, `kode`, `kualitas`) VALUES
-(2, 'KL-321', 'Baru'),
-(3, 'KL-896', 'Bekas');
+(3, 'KL-896', 'Bekas'),
+(4, 'KL-265', 'Baru');
 
 -- --------------------------------------------------------
 
@@ -153,6 +175,7 @@ CREATE TABLE `tbl_peminjaman` (
   `tgl_pengembalian` varchar(15) NOT NULL,
   `keterangan` text NOT NULL,
   `status` int(2) NOT NULL,
+  `status_denda` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -160,9 +183,8 @@ CREATE TABLE `tbl_peminjaman` (
 -- Dumping data for table `tbl_peminjaman`
 --
 
-INSERT INTO `tbl_peminjaman` (`id`, `kode`, `kode_aset`, `nama_peminjam`, `alamat_peminjam`, `nohp_peminjam`, `jml_barang`, `tgl_peminjaman`, `tgl_pengembalian`, `keterangan`, `status`, `date`) VALUES
-(1, '3434', 'KA-885', 'Ando', 'Stabat baru', 0, '2', '2023-04-04', '2023-04-29', 'Tidak ada', 0, '2023-04-04 09:20:39'),
-(2, 'PJM-6774', 'KA-928', 'SMP N 1 Secanggang', 'Secanggang', 2147483647, '3', '2023-04-13', '2023-04-13', 'note', 0, '2023-04-04 09:23:53');
+INSERT INTO `tbl_peminjaman` (`id`, `kode`, `kode_aset`, `nama_peminjam`, `alamat_peminjam`, `nohp_peminjam`, `jml_barang`, `tgl_peminjaman`, `tgl_pengembalian`, `keterangan`, `status`, `status_denda`, `date`) VALUES
+(3, 'PJM-1986', 'KA-357', 'Aldi', 'Stabat', 2147483647, '3', '2023-04-02', '2023-04-03', 'Tidak ada', 0, 1, '2023-04-05 08:07:56');
 
 --
 -- Indexes for dumped tables
@@ -178,6 +200,12 @@ ALTER TABLE `tbl_admin`
 -- Indexes for table `tbl_aset`
 --
 ALTER TABLE `tbl_aset`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_denda`
+--
+ALTER TABLE `tbl_denda`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -212,13 +240,19 @@ ALTER TABLE `tbl_peminjaman`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_aset`
 --
 ALTER TABLE `tbl_aset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `tbl_denda`
+--
+ALTER TABLE `tbl_denda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategori`
@@ -230,7 +264,7 @@ ALTER TABLE `tbl_kategori`
 -- AUTO_INCREMENT for table `tbl_kualitas`
 --
 ALTER TABLE `tbl_kualitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_lokasi`
@@ -242,7 +276,7 @@ ALTER TABLE `tbl_lokasi`
 -- AUTO_INCREMENT for table `tbl_peminjaman`
 --
 ALTER TABLE `tbl_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

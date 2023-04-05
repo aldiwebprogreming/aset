@@ -1,6 +1,6 @@
  <!DOCTYPE html>
  <html><head>
- 	<title>QRCODE</title>
+ 	<title>SURAT PEMINJAMAN</title>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -72,7 +72,7 @@
   <p>Demikian Surat Peminjaman ini yang telah dibuat, semoga ketentuan yang di telah dibuat dapat di pertanggung jawabkan dengan sebaik -baiknya.</p>
   <br>
   <br>
-  <p style="text-align: center; font-weight: bold;">Kami yang bertanda dibawah ini</p>
+  <p style="text-align: center; font-weight: bold;">Kami yang bertanda tangan dibawah ini</p>
   <br>
   <br>
   <br>

@@ -163,7 +163,7 @@
                       <div class="modal-body">
 
                         <h4>Apakah anda ingin menghapus data ini ? </h4>
-                        <form method="post" action="<?= base_url('app/act_hapuskualitas') ?>">
+                        <form method="post" action="<?= base_url('app/act_hapuspeminjam') ?>">
                           <input type="hidden" name="id" value="<?= $data['id'] ?>">
 
                         </div>

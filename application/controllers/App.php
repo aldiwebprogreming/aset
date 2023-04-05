@@ -10,9 +10,9 @@
 		{
 			parent::__construct();
 			
-			// if ($this->session->username == null) {
-			// 	redirect('login/');
-			// }
+			if ($this->session->username == null) {
+				redirect('login/');
+			}
 		}
 
 		function index(){
@@ -350,7 +350,7 @@
 				$img = array('upload_data' => $this->upload->data());
 				$new_name = $img['upload_data']['file_name'];
 
-				$kode = $this->input->post('kode');
+				$kode = base_url('aset/index/').$this->input->post('kode');
 
 				$this->generateQr($kode);
 				$qr = bin2hex($kode);
@@ -531,6 +531,16 @@
 
 		}
 
+		function act_hapuspeminjam(){
+
+			$id = $this->input->post('id');
+			$this->db->where('id', $id);
+			$this->db->delete('tbl_peminjaman');
+			$this->session->set_flashdata('message', 'swal("Yess", "Data berhasil dihapus", "success");');
+			redirect('app/data_peminjaman');
+
+		}
+
 		function act_status(){
 
 			$id = $this->input->post('id');
@@ -571,7 +581,7 @@
 			$this->dompdf->set_paper($paper_size, $orientatation);
 			$this->dompdf->load_html($html);
 			$this->dompdf->render();
-			$this->dompdf->stream("qrcodeaset.pdf", array('Attachment' => 0));
+			$this->dompdf->stream("surat_pemijaman_aset.pdf", array('Attachment' => 0));
 
 		}
 
