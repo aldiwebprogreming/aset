@@ -18,30 +18,36 @@
         <div class="box-body">
           <hr>
 
+          <form method="post" action="<?= base_url('app/cetak_peminjaman') ?>" target="_blank">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-print"></i> Cetak Surat Peminjaman</button>
 
-
-
-          <div class="box-body">
-            <div class="table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <th>No</th>
-                  <th>Kode</th>
-                  <th>Kode Aset</th>
-                  <th>Nama Peminjam</th>
-                  <th>Nohp Peminjam</th>
-                  <th>Alamat Peminjam</th>
-                  <th>Jml Barang</th>
-                  <th>Tgl Peminjaman</th>
-                  <th>Tgl Pengembalian</th>
-                  <th>Status</th>
-                  <th>Opsi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1 ?>
-                <?php foreach($pinjam as $data){ ?>
-                  <tr>
+            <div class="box-body">
+              <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <th>#</th>
+                    <th>No</th>
+                    <th>Kode</th>
+                    <th>Kode Aset</th>
+                    <th>Nama Peminjam</th>
+                    <th>Nohp Peminjam</th>
+                    <th>Alamat Peminjam</th>
+                    <th>Jml Barang</th>
+                    <th>Tgl Peminjaman</th>
+                    <th>Tgl Pengembalian</th>
+                    <th>Status</th>
+                    <th>Opsi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1 ?>
+                  <?php foreach($pinjam as $data){ ?>
+                    <tr>
+                      <td>
+                       <div class="form-check">
+                        <input class="form-check-input" name="kode" type="checkbox" value="<?= $data['kode'] ?>" id="defaultCheck1">
+                      </form>
+                    </td>
                     <td><?= $no++ ?></td>
                     <td>
                       <?= $data['kode'] ?>
@@ -69,10 +75,10 @@
 
                       <a href="#" class="btn btn-primary btn-sm my-3" data-toggle="modal" data-target="#exampleModaldetail<?= $data['id'] ?>"><i class="fa fa-eye"></i> Detail</a>
 
-                      <button class="btn btn-info btn-sm mt-1" data-toggle="modal" data-target="#exampleModalstatus<?= $data['id'] ?>"><i class="fa fa-book"></i> Update Status</button>
+                      <a href="#" class="btn btn-info btn-sm mt-1" data-toggle="modal" data-target="#exampleModalstatus<?= $data['id'] ?>"><i class="fa fa-book"></i> Update Status</a>
 
 
-                      <button class="btn btn-danger btn-sm mt-1" data-toggle="modal" data-target="#exampleModalhapus<?= $data['id'] ?>"><i class="fa fa-trash"></i></button>
+                      <a href="#" class="btn btn-danger btn-sm mt-1" data-toggle="modal" data-target="#exampleModalhapus<?= $data['id'] ?>"><i class="fa fa-trash"></i></a>
 
 
                     </td>
@@ -326,23 +332,24 @@
           </tbody>
           <tfoot>
             <tr>
-             <th>No</th>
-             <th>Kode</th>
-             <th>Kode Aset</th>
-             <th>Nama Peminjam</th>
-             <th>Nohp Peminjam</th>
-             <th>Alamat Peminjam</th>
-             <th>Jml Barang</th>
-             <th>Tgl Peminjaman</th>
-             <th>Tgl Pengembalian</th>
-             <th>Status</th>
-             <th>Opsi</th>
-           </tr>
-         </tfoot>
-       </table>
-     </div>
-   </div>
- </tbody>
+              <th>#</th>
+              <th>No</th>
+              <th>Kode</th>
+              <th>Kode Aset</th>
+              <th>Nama Peminjam</th>
+              <th>Nohp Peminjam</th>
+              <th>Alamat Peminjam</th>
+              <th>Jml Barang</th>
+              <th>Tgl Peminjaman</th>
+              <th>Tgl Pengembalian</th>
+              <th>Status</th>
+              <th>Opsi</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </tbody>
 
 </div>
 <!-- /.box-body -->

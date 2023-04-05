@@ -136,10 +136,12 @@
           <!--   <li><a href="<?= base_url('app/caleg') ?>"><i class="fa fa-book"></i> <span>Celeg</span></a></li>
             <li><a href="<?= base_url('app/usercaleg') ?>"><i class="fa fa-book"></i> <span>Usercaleg</span></a></li> -->
             <li><a href="<?= base_url('app/data_aset') ?>"><i class="fa fa-user"></i> <span>Data Aset</span></a></li>
-            <li><a href="<?= base_url('app/data_kategori') ?>"><i class="fa fa-map"></i> <span>Data Kategori</span></a></li>
-            <li><a href="<?= base_url('app/data_kualitas') ?>"><i class="fa fa-home"></i> <span>Data Kualiatas</span></a></li>
-            <li><a href="<?= base_url('app/data_lokasi') ?>"><i class="fa fa-users"></i> <span>Data Lokasi Aset</span></a></li>
-            <li><a href="<?= base_url('app/data_admin') ?>"><i class="fa fa-chart-simple"></i> <span>Data Admin</span></a></li>
+            <li><a href="<?= base_url('app/data_peminjaman') ?>"><i class="fa fa-book"></i> <span>Data Peminjaman</span></a></li>
+            <li><a href="<?= base_url('app/data_denda') ?>"><i class="fa fa-money"></i> <span>Data Denda</span></a></li>
+            <li><a href="<?= base_url('app/data_kategori') ?>"><i class="fa fa-list"></i> <span>Data Kategori</span></a></li>
+            <li><a href="<?= base_url('app/data_kualitas') ?>"><i class="fa fa-tree"></i> <span>Data Kualiatas</span></a></li>
+            <li><a href="<?= base_url('app/data_lokasi') ?>"><i class="fa fa-map"></i> <span>Data Lokasi Aset</span></a></li>
+            <li><a href="<?= base_url('app/data_admin') ?>"><i class="fa fa-users"></i> <span>Data Admin</span></a></li>
 
           </ul>
         </section>

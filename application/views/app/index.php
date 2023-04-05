@@ -8,14 +8,14 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>343</h3>
+          <h3><?= $lokasi ?></h3>
 
           <p>Data Lokasi</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="<?= base_url('app/pemilih') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?= base_url('app/data_lokasi') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -24,28 +24,72 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>3</h3>
+          <h3><?= $aset ?></h3>
 
           <p>Data Aset</p>
         </div>
         <div class="icon">
           <i class="ion ion-person"></i>
         </div>
-        <a href="<?= base_url('app/relawan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?= base_url('app/data_aset') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3><?= $pinjam ?></h3>
+
+          <p>Data Peminjam</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a href="<?= base_url('app/data_peminjaman') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-blue">
+        <div class="inner">
+          <h3><?= $denda ?></h3>
+
+          <p>Data Denda</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a href="<?= base_url('app/data_denda') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>343</h3>
+          <h3><?= $admin ?></h3>
 
           <p>Data Admin</p>
         </div>
         <div class="icon">
           <i class="ion ion-person-add"></i>
         </div>
-        <a href="<?= base_url('app/pos') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?= base_url('app/data_admin') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3><?= $kembalian ?></h3>
+
+          <p>Pengembalian hari ini</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-persons"></i>
+        </div>
+        <a href="<?= base_url('app/det_pengembalian') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->

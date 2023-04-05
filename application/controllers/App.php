@@ -16,9 +16,77 @@
 		}
 
 		function index(){
+
+			$tgl = date('Y-m-d'); 
+
+			$denda = $this->db->get_where('tbl_peminjaman', ['tgl_pengembalian' => $tgl])->row_array();
+			if ($denda == true) {
+				
+				$data = [
+					'status_denda' => 1,
+				];
+
+				$this->db->where('tgl_pengembalian', $tgl);
+				$this->db->update('tbl_peminjaman', $data);
+			}
+
+
+			$denda2 = $this->db->get_where('tbl_peminjaman', ['status_denda' => 1])->result_array();
+
+			if ($denda2 == true) {
+				
+				foreach ($denda2 as $key) {
+					$tgl1 = new DateTime($key['tgl_pengembalian']);
+					$tgl2 = new DateTime($tgl);
+					$d = $tgl2->diff($tgl1)->days + 1;
+					$hari = $d - 1;
+					$kalDenda = $hari * 10000;
+
+
+					$cekDenda = $this->db->get_where('tbl_denda', ['kode_peminjam' => $key['kode']])->row_array();
+					if ($cekDenda == true) {
+						
+						$dataDenda = [
+							'denda' => $kalDenda,
+						];
+
+						$this->db->where('kode_peminjam', $key['kode']);
+						$this->db->update('tbl_denda', $dataDenda);
+
+					}else{
+
+						$dataDenda = [
+							'kode_peminjam' => $key['kode'],
+							'kode_aset' => $key['kode_aset'],
+							'tgl_pengembalian' => $key['tgl_pengembalian'],
+							'denda' => $kalDenda,
+						];
+
+
+						$this->db->insert('tbl_denda', $dataDenda);
+
+					}
+
+
+
+
+				}
+
+			}
+
 			
+			$data['aset'] = $this->db->get('tbl_aset')->num_rows();
+			$data['lokasi'] = $this->db->get('tbl_lokasi')->num_rows();
+			$data['admin'] = $this->db->get('tbl_admin')->num_rows();
+			$data['pinjam'] = $this->db->get('tbl_peminjaman')->num_rows();
+
+			$this->db->where_not_in('denda', 0);
+			$data['denda'] = $this->db->get('tbl_denda')->num_rows();
+
+			$this->db->where_not_in('tgl_pengembalian', $tgl);
+			$data['kembalian'] = $this->db->get('tbl_peminjaman')->num_rows();
 			$this->load->view('template/header');
-			$this->load->view('app/index');
+			$this->load->view('app/index', $data);
 			$this->load->view('template/footer');
 		}
 
@@ -470,7 +538,8 @@
 
 			if ($status == 0) {
 				$data = [
-					'status' => 1
+					'status' => 1,
+					'status_denda' => 0, 
 				];
 			}else{
 				$data = [
@@ -484,6 +553,56 @@
 			$this->session->set_flashdata('message', 'swal("Yess", "Status berhasil diubah", "success");');
 			redirect('app/data_peminjaman');
 
+		}
+
+
+		function cetak_peminjaman(){
+
+			$kode = $this->input->post('kode');
+			$data['pinjam'] = $this->db->get_where('tbl_peminjaman', ['kode' => $kode])->row_array();
+
+			$this->load->library('Dompdf_gen');
+			$this->load->view('app/cetak_peminjaman', $data);
+
+			$paper_size = "A4";
+			$orientatation = "Portrait";
+			$html = $this->output->get_output();
+
+			$this->dompdf->set_paper($paper_size, $orientatation);
+			$this->dompdf->load_html($html);
+			$this->dompdf->render();
+			$this->dompdf->stream("qrcodeaset.pdf", array('Attachment' => 0));
+
+		}
+
+
+		function data_denda(){
+			$this->db->where_not_in('denda', 0);
+			$data['denda'] = $this->db->get('tbl_denda')->result_array();
+
+			$this->load->view('template/header');
+			$this->load->view('app/data_denda', $data);
+			$this->load->view('template/footer');
+		}
+
+		function act_hapusdenda(){
+
+
+			$id = $this->input->post('id');
+			$this->db->where('id', $id);
+			$this->db->delete('tbl_denda');
+			$this->session->set_flashdata('message', 'swal("Yess", "Denda berhasil di hapus", "success");');
+			redirect('app/data_denda');
+		}
+
+		function det_pengembalian(){
+
+			$this->db->where('tgl_pengembalian', date('Y-m-d'));
+			$data['pinjam'] = $this->db->get('tbl_peminjaman')->result_array();
+
+			$this->load->view('template/header');
+			$this->load->view('app/det_pengembalian', $data);
+			$this->load->view('template/footer');
 		}
 
 	}
